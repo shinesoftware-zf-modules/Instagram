@@ -1,0 +1,5 @@
+<?php $instagram = $this->instagram; ?>
+<?php if(!empty($instagram)): ?>
+    <a class="btn btn-xs btn-primary" href="<?php echo $instagram['link'] ?>"><i class="fa fa-instagram"></i> <?php printf($this->translate('Follow %s on Instagram'), $instagram['user'] ); ?></a>
+<?php endif; ?>
+

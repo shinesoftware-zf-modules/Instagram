@@ -1,0 +1,22 @@
+<?php $media = $this->media ?>
+<?php $script = "
+    $( document ).ready(function() {
+        $('.instagram-seemore').readmore({speed: 175,maxHeight: 200, lessLink: '<a class=\"btn btn-xs btn-danger\" href=\"#\"><i class=\"fa fa-instagram\"></i> ".$this->translate('Hide the photos')."</a>', moreLink: '<a class=\"btn btn-xs btn-primary\" href=\"#\"><i class=\"fa fa-instagram\"></i> ".$this->translate('Show all the photo!')."</a>'});
+    });"; 
+?>
+<h3><i class="fa fa-instagram"></i> <?php echo $this->data->full_name?> <small><?php echo $this->translate('Follow us on Instagram') ?></small></h3>
+<p class="lead"><?php echo $this->data->bio ?></p>
+<div class="label label-success"><?php echo $this->data->counts->followed_by ?> <?php echo $this->translate('Followers')?></div>
+<div class="label label-success"><?php echo $this->data->counts->follows ?> <?php echo $this->translate('Follows')?></div>
+<div class="label label-success"><?php echo $this->data->counts->media ?> <?php echo $this->translate('Photos')?></div><hr/>
+<div class="instagram-seemore">
+    <ul class="instagram gallery list-inline">
+        <?php foreach($media as $photo): ?>
+            <?php $currentphoto = $photo->getThumbnail(); ?>
+            <?php $bigphoto = $photo->getStandardResImage(); ?>
+            <li><a rel="itango[mygallery]" href="<?php echo $bigphoto->url ?>"><img class="img-thumbnail img-responsive" src="<?php echo $currentphoto->url ?>" alt="<?php echo $photo->getCaption() ?>" width="<?php echo $currentphoto->width ?>" height="<?php echo $currentphoto->height ?>" /></a></li>
+        <?php endforeach;?>
+    </ul>
+</div>
+<hr/>
+<?php $this->inlineScript()->appendScript($script);?>

@@ -1,0 +1,24 @@
+<?php $photos = $this->photos; ?>
+
+<?php if(!empty($photos[0]) && $photos[0]->getData()): ?>
+    <?php $script = "
+        $( document ).ready(function() {
+            $('.instagram-hashtag-seemore').readmore({speed: 175,maxHeight: 400, lessLink: '<a class=\"btn btn-xs btn-danger\" href=\"#\"><i class=\"fa fa-instagram\"></i> ".$this->translate('Hide the photos')."</a>', moreLink: '<a class=\"btn btn-xs btn-primary\" href=\"#\"><i class=\"fa fa-instagram\"></i> ".$this->translate('Show all the photo!')."</a>'});
+        });"; 
+    ?>
+    <div class="instagram-hashtag-seemore">
+        <h3><i class="fa fa-instagram"></i> <?php echo $this->translate('Instagram photos') ?></h3>
+        <ul class="instagram gallery list-inline clearfix">
+            <?php foreach($photos as $media): ?>
+                <?php $items= $media->getData()?>
+                <?php foreach($items as $photo): ?>
+                    <?php $currentphoto = $photo->getThumbnail(); ?>
+                    <?php $bigphoto = $photo->getStandardResImage(); ?>
+                    <li><a rel="itango[gallery]" href="<?php echo $bigphoto->url ?>"><img class="img-thumbnail img-responsive" src="<?php echo $currentphoto->url ?>" alt="<?php echo $photo->getCaption() ?>" width="<?php echo $currentphoto->width ?>" height="<?php echo $currentphoto->height ?>" /></a></li>
+                <?php endforeach;?>
+            <?php endforeach;?>
+        </ul>
+    </div>
+    <hr/>
+    <?php $this->inlineScript()->appendScript($script);?>
+<?php endif;?>

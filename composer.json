@@ -1,0 +1,31 @@
+{
+  "name": "shinesoftware-zf-modules/instagram",
+  "description": "A simple Instagram module for ZF2",
+  "license": "BSD-2-Clause",
+  "type": "library",
+  "minimum-stability": "dev",
+  "keywords": [
+    "zf2",
+    "Instagram module for Zf2"
+  ],
+  "homepage": "http://github.com/shinesoftware-zf-modules/Instagram",
+  "authors": [
+    {
+      "name": "Michelangelo Turillo",
+      "email": "info@shinesoftware.com",
+      "homepage": "http://shinesoftware.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.4",
+    "php-instagram-api/php-instagram-api": "dev-master"
+  },
+  "autoload": {
+    "psr-0": {
+      "Instagram": "src/"
+    },
+    "classmap": [
+      "./Module.php"
+    ]
+  }
+}
